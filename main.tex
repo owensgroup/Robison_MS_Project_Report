@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage[
+backend=biber,
+style=numeric,
+]{biblatex}
+
+\addbibresource{ref.bib}
+
+\title{Testing and Programmability of a Graph Framework}
+
+
+% Questions:
+% Best run or avg of many runs? Results and Analysis suggests best run, but Methodology section suggests average.
+% Source?
+% PR - one iteration?
+% Which datasets to show in paper?
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\section{Testing of a Graph Framework}
+\subsection{Metrics}
+Discuss different metrics and their importance:
+\begin{itemize}
+    \item Runtime
+    \item Nodes / Edges Visited
+    \item \textbf{MTEPS}
+    \item Search depth
+\end{itemize}
+\subsection{Methods}
+How we went about collecting these metrics:
+\begin{itemize}
+\item Ability to turn performance evaluation on and off
+    \begin{itemize}
+    \item Conditional outside CUDA code
+    \end{itemize}
+\item Collect runtime with performance evaluation turned off
+\item How to track nodes/edges visited varies by primitive
+    \begin{itemize}
+        \item BFS/SSSP - increment a counter each time an edge is visited
+        \item BC - use frontier
+        \item PR - constant
+    \end{itemize}
+\item Multiple runs / sources
+\item Throw out anomalous results
+\item Other items we track for reproducibility  
+    \begin{itemize}
+        \item GPU info
+        \item System info
+        \item Time
+        \item Git commit
+        \item Etc.
+    \end{itemize}
+\end{itemize}
+\subsection{Comparison}
+Why we compare to Gunrock:
+\begin{itemize}
+    \item Previously shown to be among the best-in-class \cite{Wang:2017:GGG}
+\end{itemize}
+\subsection{Results}
+Show and discuss results:
+\begin{itemize}
+    \item Runtime - Essentials vs Gunrock 1.0+ - V100 - various datasets - all primitives
+    \item MTEPS vs Number of Edges - Essentials - A100 - various datasets - all primitives
+    \begin{itemize}
+        \item Show how well the framework scales
+    \end{itemize}
+\end{itemize}
+\section{Programmability of a Graph Framework}
+\section{Conclusion}
+\printbibliography
+
+\end{document}
